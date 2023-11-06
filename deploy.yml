@@ -1,0 +1,31 @@
+name: Deploy to Azure App Service
+
+on:
+  push:
+    branches:
+      - main  # Nome da sua branch principal
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Especifique a versão do Python que você está usando
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt  # Substitua 'requirements.txt' pelo nome do seu arquivo de requisitos
+
+    - name: Deploy to Azure App Service
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'seu-app-no-azure'  # Substitua pelo nome do seu aplicativo no Azure App Service
+        slot-name: 'production'  # Substitua pelo nome do slot (opcional, se você estiver usando slots)
+        publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}  # Configure este segredo no seu repositório
