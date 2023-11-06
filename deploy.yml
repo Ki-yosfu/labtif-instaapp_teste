@@ -26,6 +26,5 @@ jobs:
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'seu-app-no-azure'  # Substitua pelo nome do seu aplicativo no Azure App Service
-        slot-name: 'production'  # Substitua pelo nome do slot (opcional, se você estiver usando slots)
+        app-name: 'instaapp-km'  # Substitua pelo nome do seu aplicativo no Azure App Service
         publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISH_PROFILE }}  # Configure este segredo no seu repositório
